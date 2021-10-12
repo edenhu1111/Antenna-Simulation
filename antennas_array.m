@@ -1,27 +1,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Project:      È«²¨¶Ô³ÆÕñ×ÓÕóÁĞ·ÂÕæ
-% Author:       EdenHU, ºúÔÆ²© SC21023107
-% Description:  Ì½¾¿È«²¨¶Ô³ÆÕñ×ÓÕóÁĞµÄ·½ÏòÍ¼
+% Project:      å…¨æ³¢å¯¹ç§°æŒ¯å­é˜µåˆ—ä»¿çœŸ
+% Author:       EdenHU, èƒ¡äº‘åš SC21023107
+% Description:  æ¢ç©¶å…¨æ³¢å¯¹ç§°æŒ¯å­é˜µåˆ—çš„æ–¹å‘å›¾
 %               
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc;
 array_column = 20;
 array_raw = 20; 
-%ÉèÖÃ±äÁ¿
+%è®¾ç½®å˜é‡
 theta = 0:0.01:pi;
 phai  = 0:0.01:2*pi;
 [Theta,Phai] = meshgrid(theta,phai);
 F = 0;
-%ÉèÖÃ¼ä¾àÖµÓëlamdaµÄ±ÈÖµ
+%è®¾ç½®é—´è·å€¼ä¸lamdaçš„æ¯”å€¼
 dc = 0.25;
 dr = 0.25;
 F_b = ( cos(2.*pi.*0.5.*cos(Theta)) - cos(2.*pi.*0.5) )./sin(Theta);
-%ÉèÖÃ  ÖáÏò·½ÏòÏàÎ»±ä»¯
+%è®¾ç½®  è½´å‘æ–¹å‘ç›¸ä½å˜åŒ–
 beta  = -2*pi/100*1;
-%ÉèÖÃË®Æ½Ïò·½ÏòÏàÎ»±ä»¯
+%è®¾ç½®æ°´å¹³å‘æ–¹å‘ç›¸ä½å˜åŒ–
 alpha = -2*pi/10*0;
 
-%µş¼Ó
+%å åŠ 
 for i1 = 1:array_column
     for i2 = 1:array_raw
         del1ta_z = (i1-1)*dc; 
@@ -29,7 +29,7 @@ for i1 = 1:array_column
         F = F + F_b .* exp(1i.*2.*pi.* ( delta_y.*sin(Theta).*sin(Phai) + delta_z.*cos(Theta) ) + 1i.* beta*(i1-1) + 1i.*alpha*(i2-1));
     end
 end
-F = real(F);
+F = abs(F);
 % subplot(4,4,1);
 % subplot(1,2,1);
 s = surf(F.*cos(Phai).*sin(Theta),F.*sin(Phai).*sin(Theta),F.*cos(Theta),abs(F));
